@@ -1,11 +1,17 @@
 @echo off
 setlocal enabledelayedexpansion
 
-SET PID=%1
-set src_dir=%2
-set src_file=%3
-set ext=%4
-set dst_dir=%5
+set app_name=%1
+set PID=%2
+set src_dir=%3
+set src_file=%4
+set ext=%5
+set dst_dir=%6
+
+echo Log Listener started for [93;1m%app_name%[0m
+echo Don't close this window; it'll make a copy
+echo of the most recent log and will automatically
+echo terminate when [93;1m%app_name%[0m is no longer running.
 
 :checkProcess
 timeout 1 >nul

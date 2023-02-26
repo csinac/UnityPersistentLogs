@@ -43,7 +43,7 @@ namespace SinaC.PersistentLogs
         
 #if UNITY_STANDALONE_WIN
         private static void InitialiseWin() {
-            _scriptPath = Path.Combine(Application.streamingAssetsPath, "processListener.bat");
+            _scriptPath = Path.Combine(Application.streamingAssetsPath, "logListener.bat");
             _outputLocation = Path.Combine(Directory.GetParent(Application.dataPath).ToString(), "Logs");
             _logLocation = Application.persistentDataPath;
             _pid = Process.GetCurrentProcess().Id;
@@ -59,10 +59,12 @@ namespace SinaC.PersistentLogs
         }
         
         private static void RunBatchScript() {
-            string arguments = $"{_pid} \"{_logLocation}\" Player log \"{_outputLocation}\"";
+            string appName = Process.GetCurrentProcess().ProcessName;
+            string arguments = $"{appName} {_pid} \"{_logLocation}\" Player log \"{_outputLocation}\"";
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.FileName = _scriptPath;
             startInfo.Arguments = arguments;
+            startInfo.WindowStyle = ProcessWindowStyle.Minimized;
             Process.Start(startInfo);
             
             Debug.Log($"Arguments: {arguments}");
