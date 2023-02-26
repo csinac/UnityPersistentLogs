@@ -1,7 +1,7 @@
-#Persistent Logs For Unity
+# Persistent Logs For Unity
 Persistent Logs for Unity is short script that runs a secondary process alongside with the Unity app. This process waits until the application is no longer running (stopped either by a normal application quit or a crash). When the application stops, a timestamped copy of the Player.log file is created at the root folder of the executable, under the "Logs" folder. At this point, the process listener also terminates in a few seconds.
 
-##How to use
+## How to use
 ### Windows
 - Make sure that logListener.bat file is in the StreamingAssets folder
 - Anywhere in your project, make a call to the method LogListener.Start()
